@@ -1,4 +1,4 @@
-# CSMedia - Full-Stack Social Media Platform
+# CSMedia - Social Media Platform
 
 CSMedia is a comprehensive full-stack web development project built with Django that demonstrates modern web application architecture. This social media platform allows users to create profiles, share posts, interact with friends, and build social connections through a complete web application stack.
 
