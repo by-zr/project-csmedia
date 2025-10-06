@@ -1,8 +1,33 @@
-# CSMedia - Social Media Platform
+# CSMedia - Full-Stack Social Media Platform
 
-CSMedia is a Django-based social media platform that allows users to create profiles, share posts, interact with friends, and build social connections. The application features user authentication, friend management, post creation with images, commenting, and liking functionality.
+CSMedia is a comprehensive full-stack web development project built with Django that demonstrates modern web application architecture. This social media platform allows users to create profiles, share posts, interact with friends, and build social connections through a complete web application stack.
 
-> **Note**: This is a learning project built to explore Django web development, social media concepts, and modern web technologies. It serves as a foundation for understanding full-stack development principles and social platform architecture.
+> **Learning Project**: This is a full-stack web development learning project designed to explore Django framework, database design, user authentication, frontend-backend integration, and modern web development practices. It serves as a comprehensive example of building a complete web application from backend APIs to frontend user interfaces.
+
+## 🎓 Full-Stack Learning Objectives
+
+This project demonstrates key full-stack web development concepts:
+
+### Backend Development (Django)
+- **MVC Architecture**: Model-View-Controller pattern implementation
+- **Database Design**: SQLite database with proper relationships and migrations
+- **User Authentication**: Secure login/registration with Django Allauth
+- **API Development**: RESTful URL patterns and view handling
+- **File Upload Handling**: Media file management and validation
+- **Admin Interface**: Django admin panel for content management
+
+### Frontend Development
+- **Template System**: Django templating with inheritance and context
+- **Responsive Design**: Semantic UI framework for modern interfaces
+- **JavaScript Integration**: Client-side interactivity and AJAX
+- **CSS Styling**: Custom styles and responsive design principles
+- **User Experience**: Intuitive navigation and user interface design
+
+### Full-Stack Integration
+- **Data Flow**: Complete request-response cycle from frontend to database
+- **Session Management**: User state management across requests
+- **Static File Serving**: Proper handling of CSS, JS, and media files
+- **Security Practices**: CSRF protection, user permissions, and data validation
 
 ## 🚀 Features
 
