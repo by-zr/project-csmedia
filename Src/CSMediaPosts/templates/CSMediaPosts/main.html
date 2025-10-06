@@ -1,0 +1,129 @@
+<!--POST sDASHBOARD-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Main Page &hearts;
+{% endblock title %}
+
+{% block content %}
+    <div class="ui grid modal-bottom csmedia-post-modal">
+        <div class="row">
+            <div class="twelve wide column">
+                {% for posts in csmedia_queryset %}
+                    <div class="ui fluid card">
+
+                        <!--User Profile + Created Timestamp-->
+                        <div class="content">
+                            <div class="right floated meta">
+                                <div class="ui grid">
+                                    <!--Update & Delete Buttons not working yet ):-->
+                                    <div class="row">
+                                            <a href=""><button class="ui button">Update</button></a>
+                                            <a href=""><button class="ui button">Delete</button></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img class="ui avatar image" src={{posts.post_author.user_avatar.url}}> 
+                                {{posts.post_author.csmedia_user}}&nbsp;&hearts;&nbsp;&nbsp;&nbsp;&nbsp;{{posts.created_time|timesince}} ago
+                        </div>
+
+                        <!--Post Contents-->
+                        <div class="ui fluid image">
+                            {% if posts.image %}
+                                <img src={{posts.image.url}}>
+                            {% endif %}
+                        </div>
+
+                        <div class="content">
+                            {{posts.post_content}}
+                        </div>
+
+                        <!--Likes Button + Number of Likes + Show comments-->
+                        <div class="content">
+                            <div class="right floated meta">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <button class="csmedia-comment-button ui button">All Comments</button>
+                                        <div class="csmedia-comment-box" style="display: none">
+                                            {% if posts.csmediacomment_set.all %} 
+                                                {% for comms in posts.csmediacomment_set.all %} 
+                                                    <div class="ui segment">
+                                                        <img class="ui avatar image" src={{comms.csmedia_user.user_avatar.url}}>
+                                                            {{comms.csmedia_user}}
+                                                        <div></div>
+                                                        <div>{{comms.comment_body}}</div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form action="{% url 'CSMediaPosts:Like-Post-Page' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value={{posts.id}}>
+                                <button type="submit" class="ui button">
+                                    {% if csmedia_profile in posts.post_likes.all %} 
+                                        Give Hearts
+                                    {% else %} 
+                                        Take Hearts
+                                    {% endif %} 
+                                </button>                                        
+                                &nbsp;{{posts.number_of_likes}}&nbsp;&hearts;
+                            </form>
+                        </div>
+
+                        <!--Comments Section-->          
+                        <div class="content">   
+                                <form action="" method="POST" class="ui fluid form">
+                                    {% csrf_token %} 
+                                    <input type="hidden" name="post_id" value={{posts.id}}>
+                                    {{csmedia_comment_form}}
+                                    <button type="submit" class="ui button pink" name="submit_comment_form">Comment</button>                                                  
+                                </form>
+                        </div>               
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="four wide column">
+                <div class="ui segment">
+                    {% if csmedia_add_post %} 
+                        <div class="ui pink message">Yay! You have successfully added a post &hearts;</div>
+                    {% endif %}
+                    <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        {{csmedia_post_form}}
+                    <button type="submit" class="ui button pink" name="submit_post_form">Post &hearts;</button>
+                    </form>
+                </div>
+            </div>   
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function(){
+        console.log('CSMedia is working! :)')
+
+        let comment_display = false
+                $(".csmedia-comment-button").click(function () {
+                    if (comment_display===false) {
+                        $(this).next(".csmedia-comment-box").show("slow");
+                        comment_display=true
+                    } else {
+                        $(this).next(".csmedia-comment-box").hide("slow");
+                        comment_display=false
+                    }  
+                });
+
+    })
+</script>
+{% endblock scripts %}
+
+.style.display = "none"
+

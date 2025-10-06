@@ -1,0 +1,54 @@
+<div class="ui inverted menu nav modal-bottom modal-top">
+    <div class="ui container">
+        <a href="/" class="item">
+            <h2 style="font-family: cursive;">CSMedia &hearts;</h2>
+        </a>
+        {% if request.user.is_authenticated %}
+        {% endif %}
+
+        <a href="/CSMediaPosts" class="ui item">Dashboard</a>
+
+        <div class="right menu">
+            {% if request.user.is_authenticated %}
+
+            <div class="item">
+                <form action="" method="GET">
+                <div class="ui action left icon input">
+                <input class="prompt" type="text" name='q' placeholder="Let's make more friends!">
+                <i class="search icon"></i>
+                <button type='submit' class="ui button teal">Search</button>
+                </div>
+            </form>
+            </div>
+
+            <div class="item">
+                <div class="ui floating dropdown icon button pink"> Friends <i class="dropdown icon"></i>
+                    <div class="menu" >
+                        <a href="/CSMediaProfiles/everyone" class="item">
+                            Everyone &#128512;
+                        </a>
+                        <a href="/CSMediaProfiles/toinvite" class="item">
+                            Find New Friends!
+                        </a>
+                        <a href="/CSMediaProfiles/pendingrequest" class="item">
+                            Pending Requests
+                        </a>
+                    </div>
+                </div>
+            </div>
+                        
+                <a href="/CSMediaProfiles/myprofile" class="item" >
+                    {{request.user}}
+                </a>
+                <a href="/admin/logout" class="ui item">
+                    Logout
+                </a>
+            {% else %}
+                <a href="/admin/login/?next=/admin/" class="ui item">
+                    Login
+                </a>
+            {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

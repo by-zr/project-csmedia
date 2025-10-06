@@ -1,0 +1,88 @@
+<!-- A page that lists all available CSMedia users-->
+
+{% extends 'base.html' %} 
+
+{% block title %}
+    Friends &hearts;
+{% endblock title %}
+
+{% block content %}
+    <!-- IF YOU HAVE ADDED EVERYONE AND NO MORE USER AVAILABLE TO MAKE FRIENDS -->
+    {% if csmedia_user_list_is_empty %} 
+        <div class="ui segment">
+            <div class="ui grid">
+                <div class="row">
+                    <div class="three wide column">
+                        <h3>No available user &#128534; </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <!-- SHOW ALL USERS & RELATIONSHIP STATUS-->
+    {% for invite in list_queryset %}
+        <div class="ui segment">
+            <div class="ui grid">
+                <div class="row">
+
+                    <!--TO DISPLAY USER PROFILE AVATAR-->
+                    <div class="three wide column">
+                        <img class="ui small circular image" src="{{csmedia_user_profile.user_avatar.url}}">
+
+                    </div>
+
+                    <!--TO DISPLAY USER & BIO-->
+                    <div class="thirteen wide column">
+                        <h3>{{invite.csmedia_user}}</h3>
+                        <p>{{invite.user_bio}}</p>
+                        <button class="ui button teal">View Profile &hearts;</button>
+
+                        <!--NOT FRIENDS AT ALL-->
+                        <form action="" method="POST" >
+                            {% csrf_token %}
+                            {% if invite not in friend_receiver and invite not in friend_sender %}
+                                <button type="submit" class="ui button pink"><i class="plus square icon"></i>Add Friend &#128522;</button>
+                            {% endif %}
+                        </form>
+
+                        <!--ALREADY FRIENDS-->
+                        <form action="" method="POST" >
+                            {% csrf_token %}                            
+                                {% if invite in list_queryset %}
+                                    {% if invite in friend_sender %}                                   
+                                        <button type="submit" class="ui button"><i class="minus square icon"></i>Remove Friend</button>
+                                    {% endif %}
+                                {% endif %}
+                        </form>       
+
+                        <!--RECEIVED REQUEST FROM-->
+                        <form action="" method="POST" >
+                            {% csrf_token %}           
+                        </form>      
+                                      
+                        <!--MY SENT REQUESTS-->
+                        <form action="" method="POST" >
+                            {% csrf_token %}
+                            {% if invite in list_queryset %}
+                                {% if invite in friend_receiver %}                                   
+                                    <button type="submit" class="ui inverted button pink"><i class="minus square icon"></i>Request Sent</button>
+                                {% endif %}
+                            {% endif %}
+                        </form>      
+                    </div>                        
+                </div>
+            </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    &nbsp;
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            console.log('CSMedia is working! :)')
+        })
+    </script>
+{% endblock scripts %}
+

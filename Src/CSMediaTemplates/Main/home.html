@@ -1,0 +1,66 @@
+<!--CSMEDIA HOME PAGE-->
+{% extends 'base.html' %} 
+
+{% block title %}
+Home &hearts;
+{% endblock title %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="wide column">
+                    <h3>Welcome to CSMedia &#128522; </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TO DISPLAY ALL AVAILABLE LINKS IN APP-->
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="wide column">
+                    <a href="/"><button class="ui button red">Home</button></a>
+                
+                    <a href="/CSMediaPosts"><button class="ui button orange">Posts</button></a>
+            
+                    <a href="/CSMediaProfiles/myprofile"><button class="ui button yellow">My Profile</button></a>
+    
+                    <a href="/CSMediaProfiles/everyone"><button class="ui button olive">All Users</button></a>
+                
+                    <a href="/CSMediaProfiles/toinvite"><button class="ui button green">Find New Friends</button></a>
+                
+                    <a href="/CSMediaProfiles/pendingrequest"><button class="ui button teal">Pending Requests</button></a>
+                
+                    <a href="/admin"><button class="ui button blue">Admin</button></a>
+
+                    <a href="/admin/login/?next=/admin/"><button class="ui button violet">Login</button></a>
+
+                    <a href="/admin/logout"><button class="ui button purple">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="wide column">
+                    <h4>Superuser Credentials</h4>
+                    <button class="ui inverted button grey">Username: CasilynS</button></a>
+                    <button class="ui inverted button grey">Password: Asdf123456*</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            console.log('CSMedia is working! :)')
+        })
+    </script>
+{% endblock scripts %}
+

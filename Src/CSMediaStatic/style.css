@@ -1,0 +1,26 @@
+body {
+    background-color: #fffbf1 !important;
+}
+
+.nav {
+    border-radius: 0px !important;
+    padding: 5px 0 5px 0 !important;
+    background-color: #cfcff0 !important;
+
+}
+
+.modal-bottom {
+    margin-bottom: 20px !important;
+}
+
+.csmedia-profile-modal {
+    height: 300px !important;
+    top: 200px !important;
+    font-size: 20px !important;
+}
+
+.csmedia-post-modal {
+    height: 300px !important;
+    top: 200px !important;
+}
+

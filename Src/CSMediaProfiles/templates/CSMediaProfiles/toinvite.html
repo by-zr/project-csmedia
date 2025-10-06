@@ -1,0 +1,54 @@
+<!-- TO SHOW USERS WHO ARE AVAILABLE TO ADD FRIENDS -->
+{% extends 'base.html' %} 
+
+{% block title %}
+    Make Friends &hearts;
+{% endblock title %}
+
+{% block content %}
+    {% if csmedia_user_list_is_empty %} 
+        <div class="ui segment">
+            <div class="ui grid">
+                <div class="row">
+                    <div class="three wide column">
+                        <h3>No available user &#128534; </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% for invite in invite_queryset %}
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="row">
+                        <div class="three wide column">
+                            <img class="ui small circular image" src="{{invite.user_avatar.url}}">
+                        </div>
+                        <div class="thirteen wide column">
+                            <h3>{{invite}}</h3>
+                            <p>{{invite.user_bio}}</p>
+                            <button class="ui button teal">View Profile &hearts;</button>
+
+                            <form action="" method="POST" >
+                                {% csrf_token %}
+                                {% if invite in invite_queryset %}
+                                    <button type="submit" class="ui button pink"><i class="plus square icon"></i>Add Friend &#128522;</button>
+                                {% endif %}
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+        &nbsp;
+{% endblock content %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    console.log('CSMedia is working! :)')
+})
+</script>
+{% endblock scripts %}
+

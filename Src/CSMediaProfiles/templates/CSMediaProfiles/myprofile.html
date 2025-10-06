@@ -1,0 +1,97 @@
+<!--MY PROFILE PAGE-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    My Profile &hearts;
+{% endblock title %}
+
+{% block content %}
+    <div class="ui modal csmedia-profile-modal">
+        <i class="close icon"></i>
+            <div class="header">
+                Update Your Profile &hearts;
+            </div>
+
+            <div class="image content"><div class="ui medium image"><img src="{{csmedia_profile.user_avatar.url}}"></div>
+
+            <div class="description">
+                <div class="ui header">Here's to something new &#128522;</div>
+                    <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{csmedia_profile_form.as_p}}
+                 </div>
+            </div>
+            <div class="actions">
+                <button type="submit" class="ui pink right labeled icon button">
+                    Confirm
+                    <i class="checkmark icon"></i>
+                </button>
+                    </form>
+
+            </div>
+    </div>
+        <div class="ui segment">
+
+{% if profile_update_confirm %}
+    <div class="ui pink message">Your profile is updated!</div>
+{% endif %}
+
+<h2>{{request.user}}</h2>
+    <div class="ui grid">
+        <div class="row">
+            <div class="five wide column">
+                <img class="ui medium rounded image" src={{csmedia_profile.user_avatar.url}}><br>
+                <div class="row">
+                    <button class="ui secondary button" id="csmedia-modal-button">Update</button>
+                </div>
+            </div>
+            <div class ="eleven wide column">
+                <table class="ui table">
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td>{{csmedia_profile.csmedia_user}}</td> 
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td>{{csmedia_profile.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>{{csmedia_profile.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Biography</td>
+                            <td>{{csmedia_profile.user_bio}}</td>
+                        </tr>
+                        <tr>
+                            <td>Friends</td>
+                            <td>{{csmedia_profile.get_csmedia_friends_number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Posts</td>
+                            <td>{{csmedia_profile.get_csmedia_post_number}}</td>
+                        </tr>
+                        <tr>
+                            <td>Hearts Given</td>
+                            <td>{{csmedia_profile.get_csmedia_likes_given}}&nbsp;&hearts;</td>
+                        </tr>
+                        <tr>
+                            <td>Hearts Received</td>
+                            <td>{{csmedia_profile.get_csmedia_likes_received}}&nbsp;&hearts;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            console.log('CSMedia is working! :)')
+        })
+    </script>
+{% endblock scripts %}
